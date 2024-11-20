@@ -7,25 +7,13 @@ const posts = require('../data/posts.js')
 function index(req,res) {
     console.log('Rimando i dati dei post')
     
- //    let filteredPosts = posts 
+    let filteredPosts = posts 
  
- //    //FILTRO I TAG
- 
- //    if(req.query.tags) {
- 
- //     filteredPosts = posts.filter((post) => {
- //         return post.tag.includes(req.query.ingredient.toLowerCase())
- //     })
- 
- //     const limit = parseInt(req.query.limit)
- // 	if (limit && !isNaN(limit) && limit >= 0) {
- // 		filteredPosts = filteredPosts.slice(0, limit)
- // 	}
- 
- // 	res.json(filteredPosts)
- 
-     
- //    }
+    //FILTRO I TAG
+    
+    if(req.query.tags === tags) {
+        console.log('Questo tag esiste')
+    }
  
  res.json(posts)
  

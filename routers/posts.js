@@ -11,7 +11,7 @@ router.get('/', postController.index)
 
 //! Show 
 
-router.get('/:id', postController.show)
+router.get('/:tag', postController.show)
 //! Store
 
 router.post('/', postController.store)
