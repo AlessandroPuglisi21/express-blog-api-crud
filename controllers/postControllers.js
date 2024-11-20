@@ -6,16 +6,31 @@ const posts = require('../data/posts.js')
 
 function index(req,res) {
     console.log('Rimando i dati dei post')
+
+    posts.forEach(post => {
+        post.tags = post.tags.map(tag => tag.toLowerCase());
+    });
     
-    let filteredPosts = posts 
- 
-    //FILTRO I TAG
+    let filteredPosts = posts
+    let searchedTags = req.query.tags
+
+    console.log(filteredPosts)
     
-    if(req.query.tags === tags) {
-        console.log('Questo tag esiste')
+    if(searchedTags) {
+        filteredPosts = posts.filter((post) => {
+            return post.tags.includes(searchedTags)
+
+        })
     }
+
+    // const limit = parseInt(req.query.limit)
+	// if (limit && !isNaN(limit) && limit >= 0) {
+	// 	filteredPosts = filteredPosts.slice(0, limit)
+	// }
+    
+
  
- res.json(posts)
+ res.json(filteredPosts)
  
  }
 
