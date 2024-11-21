@@ -18,11 +18,11 @@ router.post('/', postController.store)
 
 //! Update
 
-router.put('/:id', postController.put)
+router.put('/:id', postController.update)
 
 //! Modify
 
-router.patch('/:id', postController.patch)
+router.patch('/:id', postController.modify)
 
 //! Destroy
 

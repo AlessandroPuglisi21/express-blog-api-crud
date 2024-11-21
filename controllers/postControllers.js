@@ -1,4 +1,6 @@
+const express = require('express');
 const posts = require('../data/posts.js')
+let lastIndex = posts.at(-1).id
 
 //METTO LE FUNZIONI 
 
@@ -62,19 +64,35 @@ function index(req,res) {
 
 function store (req,res) {
     console.log('Aggiunta del nuovo post')
-    res.send('nuovo post aggiunto')
+    
+    const { title, slug, content, image, tags} = req.body
+
+    lastIndex++
+
+    const post = {
+        id: lastIndex,
+        title,
+        slug,
+        content,
+        image,
+        tags
+    }
+
+    posts.push(post)
+
+    res.status(201).send(post)
 }
 
 //! UPDATE 
 
-function put (req,res)  {
+function update (req,res)  {
     console.log('Post modificato interamente')
     res.send('Post modificato interamente')
 }
 
 //! MODIFY
 
-function patch(req,res) {
+function modify (req,res) {
     console.log('Post modificato parzialmente')
     res.send('Post modificato parzialmente')
 }
@@ -102,5 +120,5 @@ function destroy (req,res) {
     console.log(posts)
 }
 
- module.exports = {index, show, store, put, patch, destroy}
+ module.exports = {index, show, store, update, modify, destroy}
 
