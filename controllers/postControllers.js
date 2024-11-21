@@ -87,7 +87,28 @@ function store (req,res) {
 
 function update (req,res)  {
     console.log('Post modificato interamente')
-    res.send('Post modificato interamente')
+    
+    const id = parseInt(req.params.id)
+
+    const post = posts.find((post) => post.id === id)
+
+    if(!post) {
+        res.status(404)
+
+        return res.json({
+            error : "Post non trovato",
+            message : error
+        })
+    }
+    const { title, slug, content, image, tags} = req.body
+
+    post.title = title
+    post.slug = slug
+    post.content = content
+    post.image = image
+    post.tags = tags
+
+    res.json(post)
 }
 
 //! MODIFY
